@@ -1,0 +1,50 @@
+//------$Extends------\\
+
+%col{
+    float: left;
+    position: relative;
+    min-height: 50px;
+    padding: 0 $gutter * 0.5;
+    text-align: center;
+    background-color: rgb(62, 147, 226);
+    border: 1px solid black;
+}
+
+//------$Class------\\
+
+.row {
+    margin: 0 $gutter * -0.5;
+    @extend %clearfix;
+}
+
+//------$Grid------\\
+
+.col-center { margin: 0 auto; float: none; }
+
+@for $i from 1 through $columns {
+    .col-s-#{$i}, .col-m-#{$i}, .col-l-#{$i} { @extend %col; }
+}
+.m-show{ display: none; }
+.l-show{ display: none; }
+
+@include responsive-col('-s');
+
+//------$RESPONSIVE------\\
+
+/* Medium screen */
+
+@media only screen and (min-width: $medium) {
+    @include responsive-col('-m');
+    .m-hidden{ display: none; }
+    .s-show{ display: block; }
+    .s-show{ display: none; }
+}
+
+/* Large screen */
+
+@media only screen and (min-width: $large) {
+    @include responsive-col('-l');
+    .l-hidden{ display: none; }
+    .l-show{ display: block; }
+    .m-show{ display: none; }
+}
